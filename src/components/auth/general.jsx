@@ -27,6 +27,7 @@ export default function GeneralAuthButton({
       <Button color="secondary" variant="contained" size="large" className="action" onClick={() => setOpen(true)}>
         {button}
       </Button>
+
       <DidConnect
         popup
         open={isOpen}
