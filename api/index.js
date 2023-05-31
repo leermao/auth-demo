@@ -9,6 +9,7 @@ const fallback = require('express-history-api-fallback');
 
 const { name, version } = require('../package.json');
 const logger = require('./libs/logger');
+const { handlers } = require('./libs/auth');
 
 const app = express();
 
@@ -20,9 +21,12 @@ app.use(cors());
 
 const router = express.Router();
 router.use('/api', require('./routes'));
+
 app.use(router);
 
 const isProduction = process.env.NODE_ENV === 'production' || process.env.ABT_NODE_SERVICE_ENV === 'production';
+
+handlers.attach(Object.assign({ app: router }, require('./routes/auth/test')));
 
 if (isProduction) {
   const staticDir = path.resolve(__dirname, '../dist');

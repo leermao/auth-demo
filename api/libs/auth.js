@@ -8,6 +8,7 @@ const env = require('./env');
 
 const wallet = getWallet();
 const authenticator = new WalletAuthenticator();
+
 const handlers = new WalletHandler({
   authenticator,
   tokenStorage: new AuthStorage({
